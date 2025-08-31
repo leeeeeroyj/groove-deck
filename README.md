@@ -20,6 +20,8 @@ A self-hosted Discord music bot built with Python that provides reliable music p
 | `/stop` | Stop playback and clear queue | `/stop` |
 | `/remove` | Remove song from queue | `/remove position:1` |
 | `/move` | Move song to different position | `/move from_position:1 to_position:3` |
+| `/audio` | Show current audio settings | `/audio` |
+| `/audio_quality` | Show audio quality information | `/audio_quality` |
 
 ## Requirements
 
@@ -146,10 +148,15 @@ groove-deck/
 ├── src/
 │   ├── commands/          # Slash command implementations
 │   │   ├── play.py        # Play command
-│   │   └── queue.py       # Queue management commands
+│   │   ├── queue.py       # Queue management commands
+│   │   ├── audio.py       # Audio quality control
+│   │   └── test.py        # Test commands
 │   ├── services/          # Core services
 │   │   ├── audio_player.py # Audio playback and queue management
 │   │   └── youtube_service.py # YouTube integration
+│   ├── audio_config/      # Audio quality presets
+│   │   ├── __init__.py
+│   │   └── audio_config.py
 │   ├── bot.py             # Main bot class
 │   ├── config.py          # Configuration management
 │   └── logger.py          # Logging setup
@@ -197,6 +204,11 @@ The bot includes comprehensive error handling and logging. Check the console out
    - Scroll down to "Privileged Gateway Intents"
    - Enable **Message Content Intent** and **Server Members Intent**
    - Restart your bot
+
+5. **Poor Audio Quality (Underwater Sound)**
+   - **Solution**: Use `/audio_quality quality:discord` for Discord-optimized settings
+   - **Alternative**: Try `/audio_quality quality:high` for best quality
+   - **Note**: Discord has inherent audio limitations, but these presets help optimize quality
 
 ### Logs
 

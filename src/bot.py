@@ -8,9 +8,6 @@ import logging
 import sys
 import os
 
-# Add src directory to path for imports
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 from src.config import Config
 from src.logger import logger
 
@@ -41,6 +38,7 @@ class GrooveDeckBot(commands.Bot):
             await self.load_extension("src.commands.play")
             await self.load_extension("src.commands.queue")
             await self.load_extension("src.commands.test")
+            await self.load_extension("src.commands.audio")
             logger.info("Successfully loaded all command cogs")
         except Exception as e:
             logger.error(f"Failed to load command cogs: {e}")

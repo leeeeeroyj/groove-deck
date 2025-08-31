@@ -11,11 +11,11 @@ class YouTubeService:
     """Service for YouTube operations using yt-dlp."""
     
     def __init__(self):
-        # Configure yt-dlp options for audio extraction
+        # Configure yt-dlp options for audio extraction with Discord compatibility
         self.ydl_opts = {
-            'format': 'bestaudio/best',
+            'format': 'bestaudio/best',  # Use best available audio
             'extractaudio': True,
-            'audioformat': 'mp3',
+            'audioformat': 'mp3',  # Use MP3 for better Discord compatibility
             'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s',
             'restrictfilenames': True,
             'noplaylist': True,
@@ -25,7 +25,14 @@ class YouTubeService:
             'quiet': True,
             'no_warnings': True,
             'default_search': 'auto',
-            'source_address': '0.0.0.0'
+            'source_address': '0.0.0.0',
+            # Audio quality improvements for Discord
+            'audioquality': 0,  # Best audio quality
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': 'mp3',
+                'preferredquality': '128',  # Good quality, Discord-compatible
+            }]
         }
         
     def search_video(self, query: str) -> Optional[Dict]:

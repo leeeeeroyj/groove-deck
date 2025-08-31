@@ -96,10 +96,11 @@ class PlayCommand(commands.Cog):
             audio_url = youtube_service.get_audio_url(track.url)
             
             if audio_url:
-                # Create audio source
+                # Create audio source with Discord-compatible settings
+                # Using simpler FFmpeg options to avoid audio corruption
                 audio_source = discord.FFmpegPCMAudio(
                     audio_url,
-                    options='-vn -b:a 192k'
+                    options='-vn -f s16le -ar 48000 -ac 2'
                 )
                 
                 # Play audio
@@ -147,7 +148,7 @@ class PlayCommand(commands.Cog):
             if audio_url and player.voice_client:
                 audio_source = discord.FFmpegPCMAudio(
                     audio_url,
-                    options='-vn -b:a 192k'
+                    options='-vn -f s16le -ar 48000 -ac 2'
                 )
                 
                 player.voice_client.play(audio_source)

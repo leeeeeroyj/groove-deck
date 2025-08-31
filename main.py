@@ -2,14 +2,15 @@
 """
 Main entry point for Groove Deck Discord music bot.
 """
+import asyncio
 import sys
 import os
 
-# Add src directory to Python path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
+# Add the project root to Python path
+project_root = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, project_root)
 
-from bot import main
-import asyncio
+from src.bot import main
 
 if __name__ == "__main__":
     asyncio.run(main())
