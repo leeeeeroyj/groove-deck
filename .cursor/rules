@@ -1,0 +1,46 @@
+# .cursor/rules
+# Rules for the Discord Music Bot project
+# These rules guide Cursor's AI suggestions and code generation.
+
+project:
+  name: "discord-music-bot"
+  description: "A secure, self-hosted Discord music bot with Spotify search, YouTube playback, and queue management."
+
+coding-style:
+  language: python
+  version: "3.11"
+  formatting: black
+  linting: flake8
+  type-hints: true
+
+rules:
+  - "Follow the architecture in the project plan: src/ with bot.py, commands/, services/, and utils/."
+  - "Use discord.py 2.x with slash command support."
+  - "Implement secure token handling with dotenv (.env). Never hardcode secrets."
+  - "Ensure minimal permissions: applications.commands, connect, speak."
+  - "Keep code modular, testable, and documented with docstrings."
+  - "For YouTube playback, always use yt-dlp and ffmpeg."
+  - "Use async/await for all Discord and network operations."
+  - "Always validate user input before acting on commands."
+  - "Log errors and key actions to a centralized logger in utils/logger.py."
+  - "Include unit tests for core queue logic and service layers."
+  - "For Spotify API calls, keep authentication and search in services/spotify_service.py."
+  - "Return user-friendly embeds for all command responses."
+  - "Never request admin permissions for the bot."
+
+context:
+  include:
+    - "src/**/*.py"
+    - "requirements.txt"
+    - ".env.example"
+    - "README.md"
+  exclude:
+    - "**/__pycache__/**"
+    - "**/*.log"
+    - "**/node_modules/**"
+
+suggestions:
+  - "Propose modular solutions when adding new features."
+  - "Prefer small, composable functions over large monolithic code blocks."
+  - "When handling playback, always manage resources to avoid memory leaks."
+  - "Suggest test cases whenever generating new logic for queue handling or API integrations."
